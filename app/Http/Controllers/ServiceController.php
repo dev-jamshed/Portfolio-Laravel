@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServiceSectionImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -39,11 +40,12 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'projects_done' => 'required|integer',
             'show_on_homepage' => 'required|boolean',
+            'show_latest_service' => 'nullable|boolean',
         ]);
 
         if ($validator->fails()) {
@@ -60,7 +62,6 @@ class ServiceController extends Controller
         return response()->json(['success' => true, 'message' => 'Service Created Successfully']);
     }
 
-
     public function edit($id)
     {
         $service = Service::findOrFail($id);
@@ -70,11 +71,12 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'projects_done' => 'required|integer',
             'show_on_homepage' => 'required|boolean',
+            'show_latest_service' => 'nullable|boolean',
         ]);
 
         if ($validator->fails()) {
@@ -97,5 +99,29 @@ class ServiceController extends Controller
         $service = Service::findOrFail($id);
         $service->delete();
         return response()->json(['success' => true, 'message' => 'Service Deleted Successfully']);
+    }
+
+    public function editSectionImage()
+    {
+        $sectionImage = ServiceSectionImage::latest()->first();
+        return view('admin.services.section_image', compact('sectionImage'));
+    }
+
+    public function updateSectionImage(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'service_section_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['success' => false, 'errors' => $validator->errors()]);
+        }
+
+        if ($request->hasFile('service_section_image')) {
+            $imagePath = $request->file('service_section_image')->store('section_images', 'public');
+            ServiceSectionImage::create(['image_path' => $imagePath]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Service Section Image Updated Successfully']);
     }
 }

@@ -14,5 +14,13 @@ class Skill extends Model
         'range',
         'show_on_homepage',
         'description',
+        'icon',
+        'best_skill',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(SkillCategory::class);
+    }
 }

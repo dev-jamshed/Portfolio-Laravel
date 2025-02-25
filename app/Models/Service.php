@@ -15,5 +15,6 @@ class Service extends Model
         'icon',
         'projects_done',
         'show_on_homepage',
+        'show_latest_service',
     ];
 }

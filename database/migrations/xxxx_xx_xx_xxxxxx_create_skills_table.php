@@ -14,6 +14,8 @@ class CreateSkillsTable extends Migration
             $table->integer('range');
             $table->boolean('show_on_homepage')->default(false);
             $table->text('description')->nullable();
+            $table->string('icon')->nullable();
+            $table->boolean('best_skill')->default(false);
             $table->timestamps();
         });
     }

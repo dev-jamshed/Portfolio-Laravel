@@ -1,86 +1,3 @@
-{{-- @extends('layouts.admin')
-
-@section('content')
-    <h1>Edit Skill</h1>
-    <form id="edit-skill-form">
-        @csrf
-        @method('PUT')
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="{{ $skill->name }}" required>
-            <span class="error" id="name-error"></span>
-        </div>
-        <div>
-            <label for="range">Range</label>
-            <input type="range" name="range" id="range" min="0" max="100" value="{{ $skill->range }}" required>
-            <span class="error" id="range-error"></span>
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea name="description" id="description">{{ $skill->description }}</textarea>
-            <span class="error" id="description-error"></span>
-        </div>
-        <div>
-            <label for="show_on_homepage">Show on Homepage</label>
-            <div>
-                <input type="radio" name="show_on_homepage" id="show_on_homepage_yes" value="1" {{ $skill->show_on_homepage ? 'checked' : '' }}>
-                <label for="show_on_homepage_yes">Yes</label>
-            </div>
-            <div>
-                <input type="radio" name="show_on_homepage" id="show_on_homepage_no" value="0" {{ !$skill->show_on_homepage ? 'checked' : '' }}>
-                <label for="show_on_homepage_no">No</label>
-            </div>
-            <span class="error" id="show_on_homepage-error"></span>
-        </div>
-        <button type="submit">Update</button>
-    </form>
-
-    <script>
-        document.getElementById('edit-skill-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            fetch("{{ route('admin.skills.update', $skill->id) }}", {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-                    'X-HTTP-Method-Override': 'PUT'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Skill Updated Successfully');
-                    window.location.href = "{{ route('admin.skills.index') }}";
-                } else {
-                    // Clear previous errors
-                    document.querySelectorAll('.error').forEach(function(element) {
-                        element.textContent = '';
-                    });
-
-                    // Display validation errors
-                    for (const [key, value] of Object.entries(data.errors)) {
-                        document.getElementById(`${key}-error`).textContent = value[0];
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
-@endsection
-
-
-
-
- --}}
-
-
-
-
-
 @extends('admin.layouts.layout')
 
 
@@ -107,7 +24,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <form id="create-counter-form">
+                        <form id="create-counter-form" enctype="multipart/form-data">
                             @csrf
         @method('PUT')
                             <div class="row gy-3">
@@ -142,8 +59,33 @@
                                         <span class="error" id="show_on_homepage-error"></span>
                                     </div>    
 
+                                    <div class="col-lg-6 col-12">
+                                        <label class="form-label">Icon</label>
+                                        <input type="file" name="icon" id="icon" class="form-control solid">
+                                        @if($skill->icon)
+                                            <img src="{{ Storage::url($skill->icon) }}" alt="icon" width="50" height="50" class="mt-2">
+                                        @endif
+                                        <span class="error" id="icon-error"></span>
+                                    </div>
 
-                                   
+                                    <div class="col-lg-6 col-12 mb-4">
+                                        <label class="form-label">Best Skill</label>
+                                        <select name="best_skill" class="default-select wide form-control solid">
+                                            <option value="1" {{ $skill->best_skill == 1 ? 'selected' : '' }}>Yes</option>
+                                            <option value="0" {{ $skill->best_skill == 0 ? 'selected' : '' }}>No</option>
+                                        </select>
+                                        <span class="error" id="best_skill-error"></span>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12 mb-4">
+                                        <label class="form-label required">Category</label>
+                                        <select name="category_id" class="default-select wide form-control solid required" required>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}" {{ $skill->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="error" id="category_id-error"></span>
+                                    </div>
             
                             </div>
                             <button type="submit" class="btn btn-primary mt-4">Update</button>

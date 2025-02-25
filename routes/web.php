@@ -14,19 +14,13 @@ use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\GeneralInfoController;
-
+use App\Http\Controllers\SkillCategoryController;
 
 Route::name('frontend.')->group(function(){
-    
     Route::get('/', [HomeController::class, 'index'])->name('home');
-
 });
 
-
-
-
 Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')->group(function () {
-    
     Route::get('dashboard',function () {
         return view('admin.dashboard.dashboard');
     })->name('dashboard');
@@ -39,9 +33,10 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')
     Route::resource('experiences', ExperienceController::class)->except(['show']);
     Route::resource('clients', ClientController::class)->except(['show']);
     Route::resource('reviews', ReviewController::class)->except(['show']);
-    Route::resource('contacts', ContactController::class)->except(['show']);
+    Route::resource('contacts', ContactController::class)->except(['show', 'create', 'edit', 'update']);
     Route::resource('social_media', SocialMediaController::class)->except(['show']);
     Route::resource('projects', ProjectController::class)->except(['show']);
+    Route::resource('skill_categories', SkillCategoryController::class);
 
     // Add the show routes for DataTables
     Route::get('services/data', [ServiceController::class, 'show'])->name('services.data');
@@ -75,6 +70,14 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')
     // Add routes for General Information
     Route::get('general-info', [GeneralInfoController::class, 'index'])->name('general_info.index');
     Route::put('general-info', [GeneralInfoController::class, 'update'])->name('general_info.update');
+
+    // Add routes for updating the service section image
+    Route::get('services/section-image', [ServiceController::class, 'editSectionImage'])->name('services.section-image');
+    Route::post('services/section-image', [ServiceController::class, 'updateSectionImage'])->name('services.update-section-image');
+
+    // Add routes for updating the experience section image
+    Route::get('experiences/section-image', [ExperienceController::class, 'editSectionImage'])->name('experiences.section-image');
+    Route::post('experiences/section-image', [ExperienceController::class, 'updateSectionImage'])->name('experiences.update-section-image');
 });
 
 Route::middleware([

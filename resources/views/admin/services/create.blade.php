@@ -1,93 +1,3 @@
-{{-- @extends('layouts.admin')
-
-@section('content')
-    <h1>Create Service</h1>
-    <form id="create-service-form" enctype="multipart/form-data">
-        @csrf
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" required>
-            <span class="error" id="name-error"></span>
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea name="description" id="description"></textarea>
-            <span class="error" id="description-error"></span>
-        </div>
-        <div>
-            <label for="icon">Icon</label>
-            <input type="file" name="icon" id="icon" required>
-            <span class="error" id="icon-error"></span>
-        </div>
-        <div>
-            <label for="projects_done"> </label>
-            <input type="number" name="projects_done" id="projects_done" required>
-            <span class="error" id="projects_done-error"></span>
-        </div>
-        <div>
-            <label for="show_on_homepage">Show on Homepage</label>
-            <div>
-                <input type="radio" name="show_on_homepage" id="show_on_homepage_yes" value="1">
-                <label for="show_on_homepage_yes">Yes</label>
-            </div>
-            <div>
-                <input type="radio" name="show_on_homepage" id="show_on_homepage_no" value="0" checked>
-                <label for="show_on_homepage_no">No</label>
-            </div>
-            <span class="error" id="show_on_homepage-error"></span>
-        </div>
-        <button type="submit">Create</button>
-    </form>
-
-    <script>
-        document.getElementById('create-service-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            fetch("{{ route('admin.services.store') }}", {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Service Created Successfully');
-                    window.location.href = "{{ route('admin.services.index') }}";
-                } else {
-                    // Clear previous errors
-                    document.querySelectorAll('.error').forEach(function(element) {
-                        element.textContent = '';
-                    });
-
-                    // Display validation errors
-                    for (const [key, value] of Object.entries(data.errors)) {
-                        document.getElementById(`${key}-error`).textContent = value[0];
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
-@endsection
- --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
 @extends('admin.layouts.layout')
 
 @section('main_content')
@@ -157,6 +67,14 @@
                                         <span class="error" id="show_on_homepage-error"></span>
                                     </div>    
 
+                                    <div class="col-lg-6 col-12 mb-4">
+                                        <label class="form-label">Show Latest Service</label>
+                                        <select name="show_latest_service" class="default-select wide form-control solid">
+                                            <option value="1">Yes</option>
+                                            <option value="0" selected>No</option>
+                                        </select>
+                                        <span class="error" id="show_latest_service-error"></span>
+                                    </div>
                                     
             
             

@@ -1,59 +1,3 @@
-{{-- @extends('layouts.admin')
-
-@section('content')
-    <h1>Skills</h1>
-    <a href="{{ route('admin.skills.create') }}">Create New Skill</a>
-    <table id="skills-table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Range</th>
-                <th>Description</th>
-                <th>Show on Homepage</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-    </table>
-
-    <script>
-        $(document).ready(function() {
-            $.when(
-                $.getScript("https://code.jquery.com/jquery-3.5.1.js"),
-                $.getScript("https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"),
-                $.Deferred(function(deferred) {
-                    $(deferred.resolve);
-                })
-            ).done(function() {
-                $('#skills-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: "{{ route('admin.skills.data') }}",
-                    columns: [
-                        { data: 'name', name: 'name' },
-                        { data: 'range', name: 'range' },
-                        { data: 'description', name: 'description' },
-                        { data: 'show_on_homepage', name: 'show_on_homepage', render: function(data) {
-                            return data ? 'Yes' : 'No';
-                        }},
-                        { data: 'actions', name: 'actions', orderable: false, searchable: false }
-                    ]
-                });
-            });
-        });
-    </script>
-@endsection
- --}}
-
-
-
-
-
-
-
-
-
-
-
 @extends('admin.layouts.layout')
 
 
@@ -88,6 +32,9 @@
                                         <th>Range</th>
                                         <th>Description</th>
                                         <th>Show on Homepage</th>
+                                        <th>Icon</th>
+                                        <th>Best Skill</th>
+                                        <th>Category</th>
                                         <th>Create Date</th>
                                         <th>Update Date</th>
                                         <th>Action</th>
@@ -126,6 +73,13 @@
                 { data: 'show_on_homepage', name: 'show_on_homepage', render: function(data) {
                     return data ? 'Yes' : 'No';
                 }},
+                { data: 'icon', name: 'icon', render: function(data) {
+                    return data ? `<img src="{{ Storage::url('${data}') }}" alt="icon" width="30" height="30">` : '';
+                }},
+                { data: 'best_skill', name: 'best_skill', render: function(data) {
+                    return data ? 'Yes' : 'No';
+                }},
+                { data: 'category.name', name: 'category.name' },
                 { data: 'created_at' },
                 { data: 'updated_at' },
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }

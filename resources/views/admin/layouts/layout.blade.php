@@ -11,10 +11,10 @@
 <title>NexzTech | Admin Pannel</title>
 <link rel="shortcut icon" type="image/png" href="/assets/admin/images/logo-full.png">
 
-<link href="/assets/admin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-<link href="/assets/admin/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css" />
-<link href="/assets/admin/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-
+<link href="/assets/admin/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/admin/vendor/datatables/responsive/responsive.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/admin/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet" type="text/css"/>
+            
 
 
 <link href="/assets/admin/vendor/bootstrap-datepicker-master/css/bootstrap-datepicker.min.css" rel="stylesheet"
@@ -29,7 +29,10 @@
 <link href="/assets/admin/css/style.css" rel="stylesheet">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css">
+<link
+rel="stylesheet"
+href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
+>
 
 @yield('style')
 
@@ -63,7 +66,7 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="{{ route('admin.dashboard') }}" class="brand-logo">
+            <a href="{{route('admin.dashboard')}}" class="brand-logo">
                 {{-- <svg class="logo-abbr" xmlns="http://www.w3.org/2000/svg" width="62.074" height="65.771"
                     viewBox="0 0 62.074 65.771">
                     <g id="search_11_" data-name="search (11)" transform="translate(12.731 12.199)">
@@ -103,7 +106,7 @@
             Nav header end
         ***********************************-->
 
-
+       
 
         <!--**********************************
  Header start
@@ -118,15 +121,12 @@
                             </div>
                             <div class="nav-item d-flex align-items-center position-relative">
                                 <div class="input-group search-area">
-                                    <input type="text" class="form-control" id="searchInput" placeholder="Search"
-                                        autocomplete="off">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search" autocomplete="off">
                                     <span class="input-group-text">
-                                        <button type="button" class="btn"><i
-                                                class="flaticon-381-search-2"></i></button>
+                                        <button type="button" class="btn"><i class="flaticon-381-search-2"></i></button>
                                     </span>
                                 </div>
-                                <ul id="searchResults" class="dropdown-menu show"
-                                    style="display: none; position: absolute; top: 100%; left: 0; width: 100%;">
+                                <ul id="searchResults" class="dropdown-menu show" style="display: none; position: absolute; top: 100%; left: 0; width: 100%;">
                                     <!-- Results dynamically inserted here -->
                                 </ul>
                             </div>
@@ -140,9 +140,10 @@
 
                                 </a>
                             </li>
-
+                           
                             <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
+                                <a class="nav-link" href="javascript:void(0);" role="button"
+                                    data-bs-toggle="dropdown">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24">
                                         <g data-name="Layer 2" transform="translate(-2 -2)">
@@ -231,17 +232,16 @@
                                 </div>
                             </li>
 
-
+ 
 
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="javascript:void(0);" role="button"
                                     data-bs-toggle="dropdown">
 
-                                    <img src="{{ Auth::user()->profile_photo_url }}" width="20"
-                                        style="object-fit: cover" alt="">
+                                    <img src="{{ Auth::user()->profile_photo_url }}" width="20" style="object-fit: cover" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="{{ route('profile') }}" class="dropdown-item ai-icon">
+                                    <a href="{{route('profile')}}" class="dropdown-item ai-icon">
                                         <svg id="icon-user2" xmlns="http://www.w3.org/2000/svg" class="text-primary"
                                             width="18" height="18" viewBox="0 0 24 24" fill="none"
                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -251,8 +251,8 @@
                                         </svg>
                                         <span class="ms-2">Profile </span>
                                     </a>
-
-                                    <a href="javascript:void(0);" onclick="logout();" class="dropdown-item ai-icon">
+                                  
+                                    <a  href="javascript:void(0);" onclick="logout();" class="dropdown-item ai-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18"
                                             height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -278,12 +278,13 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
                 <div class="dropdown header-profile2 ">
-                    <a class="nav-link " href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
+                    <a
+                    
+                    class="nav-link " href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
                         <div class="header-info2 d-flex align-items-center">
 
-
-                            <img src="{{ Auth::user()->profile_photo_url }}" style="object-fit: cover"
-                                alt="">
+                            
+                            <img src="{{ Auth::user()->profile_photo_url }}"  style="object-fit: cover" alt="">
                             <div class="d-flex align-items-center sidebar-info">
                                 <div>
                                     <span class="font-w400 d-block text-capitalize">{{ Auth::user()->name }}</span>
@@ -295,7 +296,7 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a href="{{ route('profile') }}" class="dropdown-item ai-icon ">
+                        <a href="{{route('profile')}}" class="dropdown-item ai-icon ">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
                                 height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -304,8 +305,8 @@
                             </svg>
                             <span class="ms-2">Profile </span>
                         </a>
-
-                        <a href="javascript:void(0);" onclick="logout();" class="dropdown-item ai-icon">
+ 
+                        <a  href="javascript:void(0);" onclick="logout();" class="dropdown-item ai-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18"
                                 height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -318,10 +319,9 @@
                     </div>
                 </div>
 
-
+                
                 <ul class="metismenu" id="menu">
-                    <li><a href="{{ route('admin.dashboard') }}"><i class="flaticon-025-dashboard"></i><span
-                                class="nav-text">Dashboard</span></a></li>
+                    <li><a href="{{route('admin.dashboard')}}" ><i class="flaticon-025-dashboard"></i><span class="nav-text">Dashboard</span></a></li>
                     {{-- <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="flaticon-025-dashboard"></i>
                             <span class="nav-text">Dashboard</span>
@@ -336,48 +336,23 @@
                             <li><a href="companies.html">Companies</a></li>
                         </ul>
 
-                    </li> --}}
-
-                    <li><a href="{{ route('admin.services.index') }}"><i
-                                class="fa-duotone fa-solid fa-database"></i><span class="nav-text">Services</span></a>
-                    </li>
-                    <li><a href="{{ route('admin.projects.index') }}"><i
-                                class="fa-duotone fa-regular fa-rectangle-history"></i><span
-                                class="nav-text">Projects</span></a></li>
-                    <li><a href="{{ route('admin.counters.index') }}"><i
-                                class="fa-duotone fa-solid fa-arrows-rotate-reverse"></i><span
-                                class="nav-text">Counters</span></a></li>
-                    <li><a href="{{ route('admin.banners.index') }}"><i
-                                class="fa-duotone fa-regular fa-image-landscape"></i><span
-                                class="nav-text">Banners</span></a></li>
-                    <li><a href="{{ route('admin.skills.index') }}"><i
-                                class="fa-duotone fa-regular fa-screwdriver-wrench"></i><span
-                                class="nav-text">Skills</span></a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.skill_categories.index') }}">
-                            <i class="fas fa-list"></i> Skill Categories
-                        </a>
-                    </li>
-                    <li><a href="{{ route('admin.educations.index') }}"><i
-                                class="fa-duotone fa-regular fa-user-graduate"></i></i><span
-                                class="nav-text">Educations</span></a></li>
-                    <li><a href="{{ route('admin.experiences.index') }}"><i
-                                class="fa-duotone fa-regular fa-business-time"></i><span
-                                class="nav-text">Experiences</span></a></li>
-                    <li><a href="{{ route('admin.social_media.index') }}"><i
-                                class="fa-duotone fa-regular fa-icons"></i></i><span class="nav-text">Social
-                                Media</span></a></li>
-                    <li><a href="{{ route('admin.clients.index') }}"><i
-                                class="fa-duotone fa-regular fa-users-gear"></i><span
-                                class="nav-text">Clients</span></a></li>
-                    <li><a href="{{ route('admin.reviews.index') }}"><i
-                                class="fa-duotone fa-regular fa-user-magnifying-glass"></i><span
-                                class="nav-text">Reviews</span></a></li>
-                    <li><a href="{{ route('admin.general_info.index') }}"><i
-                                class="fa-duotone fa-info-circle"></i><span class="nav-text">General
-                                Information</span></a></li>
-
-
+                    </li> --}} 
+                    <li><a href="{{ route('admin.general_info.index') }}" ><i class="fa-duotone fa-info-circle"></i><span class="nav-text">General Information</span></a></li>
+                    <li><a href="{{ route('admin.services.index') }}" ><i class="fa-duotone fa-solid fa-database"></i><span class="nav-text">Services</span></a></li>
+                    <li><a href="{{ route('admin.service_categories.index') }}"><i class="fas fa-list"></i><span class="nav-text">Service Categories</span></a></li>
+                    <li><a href="{{ route('admin.projects.index') }}" ><i class="fa-duotone fa-regular fa-rectangle-history"></i><span class="nav-text">Projects</span></a></li>
+                    <li><a href="{{ route('admin.counters.index') }}" ><i class="fa-duotone fa-solid fa-arrows-rotate-reverse"></i><span class="nav-text">Counters</span></a></li>
+                    <li><a href="{{ route('admin.pricings.index') }}"><i class="fa-duotone fa-dollar-sign"></i><span class="nav-text">Pricings</span></a></li>
+                    <li><a href="{{ route('admin.banners.index') }}" ><i class="fa-duotone fa-regular fa-image-landscape"></i><span class="nav-text">Banners</span></a></li>
+                    <li><a href="{{ route('admin.skills.index') }}" ><i class="fa-duotone fa-regular fa-screwdriver-wrench"></i><span class="nav-text">Skills</span></a></li>
+                    <li><a href="{{ route('admin.skill_categories.index') }}"><i class="fas fa-list"></i><span class="nav-text">Skill Categories</span></a></li>
+                    <li><a href="{{ route('admin.educations.index') }}" ><i class="fa-duotone fa-regular fa-user-graduate"></i></i><span class="nav-text">Educations</span></a></li>
+                    <li><a href="{{ route('admin.experiences.index') }}" ><i class="fa-duotone fa-regular fa-business-time"></i><span class="nav-text">Experiences</span></a></li>
+                    <li><a href="{{ route('admin.social_media.index') }}" ><i class="fa-duotone fa-regular fa-icons"></i></i><span class="nav-text">Social Media</span></a></li>
+                    <li><a href="{{ route('admin.clients.index') }}" ><i class="fa-duotone fa-regular fa-users-gear"></i><span class="nav-text">Clients</span></a></li>
+                    <li><a href="{{ route('admin.reviews.index') }}" ><i class="fa-duotone fa-regular fa-user-magnifying-glass"></i><span class="nav-text">Reviews</span></a></li>
+                 
+           
                     {{-- <li>
                         <a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="fa-duotone fa-solid fa-gear"></i>
@@ -389,16 +364,17 @@
                         </ul>
                     </li> --}}
 
-
+                   
                 </ul>
-
+                
             </div>
         </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
 
-
+        
+ 
         <!--**********************************
             Content body start
         ***********************************-->
@@ -406,7 +382,7 @@
             @yield('main_content')
         </div>
 
-
+ 
 
         <!--**********************************
             Content body end
@@ -415,7 +391,7 @@
             @csrf
         </form>
 
-
+ 
 
         <!--**********************************
    Footer start
@@ -448,17 +424,15 @@
 
     <script src="/assets/admin/vendor/global/global.min.js" type="text/javascript"></script>
     <script src="/assets/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
-    <script src="/assets/admin/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js" type="text/javascript">
-    </script>
-    <script src="/assets/admin/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js" type="text/javascript">
-    </script>
-
+    <script src="/assets/admin/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="/assets/admin/vendor/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    
     @if (Request::is('admin/') || Request::is('/admin/dashboard'))
         <script src="/assets/admin/vendor/apexchart/apexchart.js" type="text/javascript"></script>
         <script src="/assets/admin/vendor/chartjs/chart.bundle.min.js" type="text/javascript"></script>
         <script src="/assets/admin/js/dashboard/dashboard-1.js" type="text/javascript"></script>
     @endif
-
+    
     <script src="/assets/admin/vendor/peity/jquery.peity.min.js" type="text/javascript"></script>
     <script src="/assets/admin/vendor/owl-carousel/owl.carousel.js" type="text/javascript"></script>
     <script src="/assets/admin/vendor/datatables/js/jquery.dataTables.min.js" type="text/javascript"></script>
@@ -466,7 +440,7 @@
     <script src="/assets/admin/js/plugins-init/datatables.init.js" type="text/javascript"></script>
     <script src="/assets/admin/js/custom.min.js" type="text/javascript"></script>
     <script src="/assets/admin/js/dlabnav-init.js" type="text/javascript"></script>
-
+    
     {{-- <script src="/assets/admin/js/demo.js" type="text/javascript"></script> --}}
     {{-- <script src="/assets/admin/js/styleSwitcher.js" type="text/javascript"></script> --}}
 
@@ -476,64 +450,30 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Yeh links search me show honge
-            const navLinks = [{
-                    name: "Dashboard",
-                    url: "{{ route('admin.dashboard') }}"
-                },
-                {
-                    name: "Profile",
-                    url: "{{ route('profile') }}"
-                },
-                {
-                    name: "Services",
-                    url: "{{ route('admin.services.index') }}"
-                },
-                {
-                    name: "Projects",
-                    url: "{{ route('admin.projects.index') }}"
-                },
-                {
-                    name: "Counters",
-                    url: "{{ route('admin.counters.index') }}"
-                },
-                {
-                    name: "Banners",
-                    url: "{{ route('admin.banners.index') }}"
-                },
-                {
-                    name: "Skills",
-                    url: "{{ route('admin.skills.index') }}"
-                },
-                {
-                    name: "Educations",
-                    url: "{{ route('admin.educations.index') }}"
-                },
-                {
-                    name: "Experiences",
-                    url: "{{ route('admin.experiences.index') }}"
-                },
-                {
-                    name: "Social Media",
-                    url: "{{ route('admin.social_media.index') }}"
-                },
-                {
-                    name: "Clients",
-                    url: "{{ route('admin.clients.index') }}"
-                },
-                {
-                    name: "Reviews",
-                    url: "{{ route('admin.reviews.index') }}"
-                }
+            const navLinks = [
+                { name: "Dashboard", url: "{{ route('admin.dashboard') }}" },
+                { name: "Profile", url: "{{ route('profile') }}" },
+                { name: "Services", url: "{{ route('admin.services.index') }}" },
+                { name: "Services Categories", url: "{{ route('admin.service_categories.index') }}" },
+                { name: "Projects", url: "{{ route('admin.projects.index') }}" },
+                { name: "Counters", url: "{{ route('admin.counters.index') }}" },
+                { name: "Banners", url: "{{ route('admin.banners.index') }}" },
+                { name: "Skills", url: "{{ route('admin.skills.index') }}" },
+                { name: "Skill Categories", url: "{{ route('admin.skill_categories.index') }}" },
+                { name: "Educations", url: "{{ route('admin.educations.index') }}" },
+                { name: "Experiences", url: "{{ route('admin.experiences.index') }}" },
+                { name: "Social Media", url: "{{ route('admin.social_media.index') }}" },
+                { name: "Clients", url: "{{ route('admin.clients.index') }}" },
+                { name: "Reviews", url: "{{ route('admin.reviews.index') }}" }
             ];
-
+        
             const searchInput = document.getElementById("searchInput");
             const searchResults = document.getElementById("searchResults");
-
+        
             function showResults(query) {
                 searchResults.innerHTML = ""; // Purane results clear karna
-                const filteredLinks = navLinks.filter(link => link.name.toLowerCase().includes(query
-                    .toLowerCase()));
-
+                const filteredLinks = navLinks.filter(link => link.name.toLowerCase().includes(query.toLowerCase()));
+        
                 if (filteredLinks.length > 0) {
                     searchResults.style.display = "block";
                     filteredLinks.forEach(link => {
@@ -545,17 +485,17 @@
                     searchResults.style.display = "none";
                 }
             }
-
+        
             //  Jaise hi input field par click ho, sabhi links dikhayein
             searchInput.addEventListener("focus", function() {
                 showResults(""); // Empty query dena taake sabhi links show ho
             });
-
+        
             //  Type karte waqt search filter ho
             searchInput.addEventListener("input", function() {
                 showResults(searchInput.value);
             });
-
+        
             //  Click outside to close dropdown
             document.addEventListener("click", function(event) {
                 if (!searchInput.contains(event.target) && !searchResults.contains(event.target)) {
@@ -563,17 +503,17 @@
                 }
             });
         });
-    </script>
+        </script>
+           
 
 
 
-
-
+    
     <script>
         function logout() {
-            event.preventDefault();
-            document.getElementById('company-logout-form').submit();
-        }
+        event.preventDefault();
+        document.getElementById('company-logout-form').submit();
+    }
 
         function JobickCarousel() {
             /*  testimonial one function by = owl.carousel.js */
@@ -637,3 +577,4 @@
 </body>
 
 </html>
+

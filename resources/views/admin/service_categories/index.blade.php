@@ -2,12 +2,13 @@
 
 @section('main_content')
     <div class="container-fluid">
+
         <div class="row page-titles mb-4 py-3">
             <div class="d-flex align-items-center flex-wrap">
-                <h3 class="me-auto my-0">Skill Categories</h3>
+                <h3 class="me-auto my-0">Service Categories</h3>
                 <div>
-                    <a href="{{ route('admin.skill_categories.create') }}" class="btn btn-primary me-3">
-                        <i class="fas fa-plus me-2"></i>Create New Category
+                    <a href="{{ route('admin.service_categories.create') }}" class="btn btn-primary me-3">
+                        <i class="fas fa-plus me-2"></i>Add New Category
                     </a>
                 </div>
             </div>
@@ -29,7 +30,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Data will be populated by DataTables -->
+
                                 </tbody>
                             </table>
                         </div>
@@ -42,12 +43,12 @@
 
 @section('script')
 <script>
-    let table;
+    let table
     $(document).ready(function() {
         table = $('#data-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.skill_categories.data') }}",
+            ajax: "{{ route('admin.service_categories.data') }}",
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
@@ -57,7 +58,7 @@
             ],
             order: [
                 [0, 'desc']
-            ],
+            ], // Default order by ID descending
             language: {
                 paginate: {
                     next: '<i class="fa fa-angle-right"></i>',
@@ -79,7 +80,7 @@
             '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
         $.ajax({
-            url: `{{ url('admin/skill_categories/${id}/delete') }}`,
+            url: `{{ url('admin/service_categories/${id}/delete') }}`, // Your route URL
             type: "GET",
             success: function(response) {
                 if (response.success) {
@@ -87,6 +88,7 @@
                         icon: "success",
                         title: response.message
                     });
+
                     table.ajax.reload();
                 }
             },

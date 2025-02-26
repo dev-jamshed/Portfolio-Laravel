@@ -15,5 +15,8 @@ class GeneralInfo extends Model
         'location',
         'phone',
         'footer_desc',
+        'sidebar_image',
+        'sidebar_title',
+        'sidebar_description'
     ];
 }

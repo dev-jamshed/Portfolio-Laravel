@@ -55,6 +55,7 @@ class ProjectController extends Controller
             'author' => 'required|string',
             'date' => 'required|date',
             'tags' => 'nullable|array',
+            'long_description' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -96,6 +97,7 @@ class ProjectController extends Controller
             'author' => 'required|string',
             'date' => 'required|date',
             'tags' => 'nullable|array',
+            'long_description' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {

@@ -15,6 +15,9 @@ use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\GeneralInfoController;
 use App\Http\Controllers\SkillCategoryController;
+use App\Http\Controllers\ServiceCategoryController;
+use App\Http\Controllers\ExperienceYearController;
+use App\Http\Controllers\PricingController;
 
 Route::name('frontend.')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -37,6 +40,7 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')
     Route::resource('social_media', SocialMediaController::class)->except(['show']);
     Route::resource('projects', ProjectController::class)->except(['show']);
     Route::resource('skill_categories', SkillCategoryController::class);
+    Route::resource('service_categories', ServiceCategoryController::class)->except(['show']);
 
     // Add the show routes for DataTables
     Route::get('services/data', [ServiceController::class, 'show'])->name('services.data');
@@ -50,6 +54,8 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')
     Route::get('contacts/data', [ContactController::class, 'show'])->name('contacts.data');
     Route::get('social_media/data', [SocialMediaController::class, 'show'])->name('social_media.data');
     Route::get('projects/data', [ProjectController::class, 'show'])->name('projects.data');
+    Route::get('service_categories/data', [ServiceCategoryController::class, 'show'])->name('service_categories.data');
+    Route::get('skill_categories/data', [SkillCategoryController::class, 'show'])->name('skill_categories.data');
 
     // Add the Delete routes for DataTables
     Route::get('services/{id}/delete', [ServiceController::class, 'destroy'])->name('services.delete');
@@ -63,6 +69,8 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')
     Route::get('contacts/{id}/delete', [ContactController::class, 'destroy'])->name('contacts.delete');
     Route::get('social_media/{id}/delete', [SocialMediaController::class, 'destroy'])->name('social_media.delete');
     Route::get('projects/{id}/delete', [ProjectController::class, 'destroy'])->name('projects.delete');
+    Route::get('service_categories/{id}/delete', [ServiceCategoryController::class, 'destroy'])->name('service_categories.delete');
+    Route::get('skill_categories/{id}/delete', [SkillCategoryController::class, 'destroy'])->name('skill_categories.delete');
 
     // Add route to handle image removal
     Route::delete('projects/remove-image/{id}', [ProjectController::class, 'removeImage'])->name('projects.remove-image');
@@ -78,6 +86,19 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')
     // Add routes for updating the experience section image
     Route::get('experiences/section-image', [ExperienceController::class, 'editSectionImage'])->name('experiences.section-image');
     Route::post('experiences/section-image', [ExperienceController::class, 'updateSectionImage'])->name('experiences.update-section-image');
+
+    // Add routes for Experience Year
+    Route::get('experience_years', [ExperienceYearController::class, 'index'])->name('experience_years.index');
+    Route::put('experience_years', [ExperienceYearController::class, 'update'])->name('experience_years.update');
+
+    // Add routes for Pricing
+    Route::get('pricings', [PricingController::class, 'index'])->name('pricings.index');
+    Route::get('pricings/data', [PricingController::class, 'show'])->name('pricings.data');
+    Route::get('pricings/create', [PricingController::class, 'create'])->name('pricings.create');
+    Route::post('pricings', [PricingController::class, 'store'])->name('pricings.store');
+    Route::get('pricings/{id}/edit', [PricingController::class, 'edit'])->name('pricings.edit');
+    Route::put('pricings/{id}', [PricingController::class, 'update'])->name('pricings.update');
+    Route::get('pricings/{id}/delete', [PricingController::class, 'destroy'])->name('pricings.delete');
 });
 
 Route::middleware([

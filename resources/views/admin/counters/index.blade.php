@@ -12,6 +12,7 @@
                     <a href="{{ route('admin.counters.create') }}"
                         class="btn btn-primary me-3"><i class="fas fa-plus me-2"></i>Create New Counter
                     </a>
+                    <a href="{{ route('admin.experience_years.index') }}" class="btn btn-secondary me-3"><i class="fas fa-history me-2"></i>Total Years of Experience</a>
                 </div>
             </div>
             
@@ -37,7 +38,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <!-- Data will be populated by DataTables -->
                                 </tbody>
                             </table>
                         </div>
@@ -142,6 +143,13 @@
             });
 
         }
+
+    @if(session('success'))
+        Toast.fire({
+            icon: 'success',
+            title: '{{ session('success') }}'
+        });
+    @endif
 </script>
      
 @endsection

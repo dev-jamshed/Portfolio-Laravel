@@ -11,6 +11,7 @@
                     <a href="{{ route('admin.experiences.create') }}" class="btn btn-primary me-3">
                         <i class="fas fa-plus me-2"></i>Add New Experience
                     </a>
+                    <a href="{{ route('admin.experience_years.index') }}" class="btn btn-secondary me-3"><i class="fas fa-history me-2"></i>Total Years of Experience</a>
                     <a href="{{ route('admin.experiences.section-image') }}" class="btn btn-secondary">
                         <i class="fas fa-image me-2"></i>Update Experience Section Image
                     </a>

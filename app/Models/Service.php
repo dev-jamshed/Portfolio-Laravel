@@ -15,6 +15,12 @@ class Service extends Model
         'icon',
         'projects_done',
         'show_on_homepage',
-        'show_latest_service',
+        'category_id',
+        'long_description'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(ServiceCategory::class);
+    }
 }

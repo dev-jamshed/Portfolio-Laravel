@@ -18,6 +18,7 @@ class Project extends Model
         'author',
         'date',
         'tags',
+        'long_description',
     ];
 
     protected $casts = [

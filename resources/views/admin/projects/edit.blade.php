@@ -1,161 +1,3 @@
-{{-- @extends('layouts.admin')
-
-@section('content')
-    <h1>Edit Project</h1>
-    <form id="edit-project-form" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" value="{{ $project->name }}" required>
-            <span class="error" id="name-error"></span>
-        </div>
-        <div>
-            <label for="description">Description</label>
-            <textarea name="description" id="description" required>{{ $project->description }}</textarea>
-            <span class="error" id="description-error"></span>
-        </div>
-        <div>
-            <label for="main_image">Main Image</label>
-            <input type="file" name="main_image" id="main_image">
-            <img src="{{ asset('storage/' . $project->main_image) }}" alt="{{ $project->name }}" width="100">
-            <span class="error" id="main_image-error"></span>
-        </div>
-        <div>
-            <label for="images">Additional Images</label>
-            <input type="file" name="images[]" id="images" multiple>
-            <span class="error" id="images-error"></span>
-            <div id="additional-images">
-                @foreach($project->images as $image)
-                    <div class="additional-image" data-id="{{ $image->id }}">
-                        <img src="{{ asset('storage/' . $image->path) }}" alt="Additional Image" width="100">
-                        <button type="button" onclick="removeImage(this, '{{ $image->id }}')">Remove</button>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <div>
-            <label for="service_id">Service</label>
-            <select name="service_id" id="service_id" required>
-                @foreach($services as $service)
-                    <option value="{{ $service->id }}" {{ $project->service_id == $service->id ? 'selected' : '' }}>{{ $service->name }}</option>
-                @endforeach
-            </select>
-            <span class="error" id="service_id-error"></span>
-        </div>
-        <div>
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author" value="{{ $project->author }}" required>
-            <span class="error" id="author-error"></span>
-        </div>
-        <div>
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date" value="{{ $project->date }}" required>
-            <span class="error" id="date-error"></span>
-        </div>
-        <div>
-            <label for="tags">Tags</label>
-            <div id="tags-wrapper">
-                @foreach($project->tags as $tag)
-                    <div class="tag-input">
-                        <input type="text" name="tags[]" value="{{ $tag }}">
-                        <button type="button" onclick="removeTag(this)">Remove</button>
-                    </div>
-                @endforeach
-            </div>
-            <button type="button" onclick="addTag()">Add Tag</button>
-            <span class="error" id="tags-error"></span>
-        </div>
-        <button type="submit">Update</button>
-    </form>
-
-    <script>
-        function addTag() {
-            var wrapper = document.getElementById('tags-wrapper');
-            var div = document.createElement('div');
-            div.className = 'tag-input';
-            var input = document.createElement('input');
-            input.type = 'text';
-            input.name = 'tags[]';
-            var button = document.createElement('button');
-            button.type = 'button';
-            button.textContent = 'Remove';
-            button.onclick = function() {
-                removeTag(button);
-            };
-            div.appendChild(input);
-            div.appendChild(button);
-            wrapper.appendChild(div);
-        }
-
-        function removeTag(button) {
-            var div = button.parentElement;
-            div.remove();
-        }
-
-        function removeImage(button, imageId) {
-            var div = button.parentElement;
-            fetch("{{ route('admin.projects.remove-image', '') }}/" + imageId, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
-                }
-            }).then(response => response.json())
-              .then(data => {
-                  if (data.success) {
-                      div.remove();
-                  } else {
-                      alert('Failed to remove image');
-                  }
-              }).catch(error => {
-                  console.error('Error:', error);
-              });
-        }
-
-        document.getElementById('edit-project-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var formData = new FormData(this);
-
-            fetch("{{ route('admin.projects.update', $project->id) }}", {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-                    'X-HTTP-Method-Override': 'PUT'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Project Updated Successfully');
-                    window.location.href = "{{ route('admin.projects.index') }}";
-                } else {
-                    // Clear previous errors
-                    document.querySelectorAll('.error').forEach(function(element) {
-                        element.textContent = '';
-                    });
-
-                    // Display validation errors
-                    for (const [key, value] of Object.entries(data.errors)) {
-                        document.getElementById(`${key}-error`).textContent = value[0];
-                    }
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
-@endsection --}}
-
-
-
-
-
-
-
-
-
 @extends('admin.layouts.layout')
 
 
@@ -276,6 +118,12 @@
                                     <span class="error" id="description-error"></span>
                                 </div>
 
+                                <div class="col-12">
+                                    <label class="form-label">Long Description</label>
+                                    <textarea name="long_description" id="long_description" class="form-control" rows="6">{{ $project->long_description }}</textarea>
+                                    <span class="error" id="long_description-error"></span>
+                                </div>
+
 
 
                             </div>
@@ -291,6 +139,7 @@
 @endsection
 
 @section('script')
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
     <script>
         function addTag() {
             var wrapper = document.getElementById('tags-wrapper');
@@ -350,6 +199,7 @@
 
 
             var formData = new FormData(this);
+            formData.set('long_description', editor.getData());
 
             fetch("{{ route('admin.projects.update', $project->id) }}", {
                     method: 'POST',
@@ -393,5 +243,15 @@
 
             ;
         });
+
+        let editor;
+        ClassicEditor
+            .create(document.querySelector('#long_description'))
+            .then(newEditor => {
+                editor = newEditor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 @endsection

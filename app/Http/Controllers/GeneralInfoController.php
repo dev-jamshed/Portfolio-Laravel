@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GeneralInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class GeneralInfoController extends Controller
 {
@@ -17,11 +18,14 @@ class GeneralInfoController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'email' => 'required|email',
-            'location' => 'required|string',
-            'phone' => 'required|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'email' => 'nullable|email',
+            'location' => 'nullable|string',
+            'phone' => 'nullable|string',
             'footer_desc' => 'nullable|string',
+            'sidebar_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'sidebar_title' => 'nullable|string',
+            'sidebar_description' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -31,14 +35,18 @@ class GeneralInfoController extends Controller
         $data = $validator->validated();
 
         if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('general_info', 'public');
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        if ($request->hasFile('sidebar_image')) {
+            $data['sidebar_image'] = $request->file('sidebar_image')->store('sidebar_images', 'public');
         }
 
         $generalInfo = GeneralInfo::first();
-        if ($generalInfo) {
-            $generalInfo->update($data);
+        if (!$generalInfo) {
+            $generalInfo = GeneralInfo::create($data);
         } else {
-            GeneralInfo::create($data);
+            $generalInfo->update($data);
         }
 
         return response()->json(['success' => true, 'message' => 'General Information Updated Successfully']);

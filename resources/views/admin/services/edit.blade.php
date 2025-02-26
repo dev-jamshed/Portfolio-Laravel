@@ -23,7 +23,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <form id="create-banner-form" enctype="multipart/form-data">
+                        <form id="edit-service-form" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                             <div class="row gy-3">
@@ -59,6 +59,12 @@
                                         <span class="error" id="description-error"></span>
                                     </div>
 
+                                    <div class="col-12">
+                                        <label class="form-label">Long Description</label>
+                                        <textarea name="long_description" id="long_description" class="form-control" rows="6">{{ $service->long_description }}</textarea>
+                                        <span class="error" id="long_description-error"></span>
+                                    </div>
+
 
                                     <div class="col-xl-6  col-md-6 mb-4">
                                         <label class="form-label required">Show on Homepage</label>
@@ -78,10 +84,18 @@
                                         <span class="error" id="show_latest_service-error"></span>
                                     </div>
                                     
-            
+                                    <div class="col-lg-6 col-12 mb-4">
+                                        <label class="form-label required">Category</label>
+                                        <select name="category_id" class="default-select wide form-control solid required" required>
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}" {{ $service->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="error" id="category_id-error"></span>
+                                    </div>
             
                             </div>
-                            <button type="submit" class="btn btn-primary mt-4">Create</button>
+                            <button type="submit" class="btn btn-primary mt-4">Update</button>
                             
                         </form>
                     </div>
@@ -93,11 +107,19 @@
 @endsection
 
 @section('script')
-
+<script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 <script>
- 
+    let editor;
+    ClassicEditor
+        .create(document.querySelector('#long_description'))
+        .then(newEditor => {
+            editor = newEditor;
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
-        document.getElementById('create-banner-form').addEventListener('submit', function(event) {
+        document.getElementById('edit-service-form').addEventListener('submit', function(event) {
             event.preventDefault();
             let $submitButton = $(this).find('button[type="submit"]');
         let originalText = $submitButton.html(); // Save original button text
@@ -109,6 +131,7 @@
 
 
             var formData = new FormData(this);
+            formData.set('long_description', editor.getData());
 
             fetch("{{ route('admin.services.update', $service->id) }}", {
                 method: 'POST',
@@ -144,6 +167,7 @@
             $submitButton.html(originalText).prop('disabled', false);
         });
         });
+
 </script>
      
 @endsection

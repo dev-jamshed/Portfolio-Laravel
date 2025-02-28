@@ -22,7 +22,7 @@
         </div>
         <div>
             <label for="subject">Subject</label>
-            <input type="text" name="subject" id="subject" required>
+            <input type="text"  name="subject" id="subject" required>
             <span class="error" id="subject-error"></span>
         </div>
         <div>
@@ -37,7 +37,6 @@
         document.getElementById('create-contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
             var formData = new FormData(this);
-
             fetch("{{ route('admin.contacts.store') }}", {
                 method: 'POST',
                 headers: {
@@ -53,7 +52,7 @@
                 } else {
                     // Clear previous errors
                     document.querySelectorAll('.error').forEach(function(element) {
-                        element.textContent = '';
+                        element.textContent = '';   
                     });
 
                     // Display validation errors
@@ -67,4 +66,5 @@
             });
         });
     </script>
+
 @endsection

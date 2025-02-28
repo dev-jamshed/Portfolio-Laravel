@@ -40,7 +40,7 @@
                         <h3 class="main-title">Ui/visual Design</h3>
                         <p class="sub-title">21 Done</p>
                     </div>
-                    <p class="card-para">In this portfolio, you’ll find a curated selection of projects that highlight my skills in [Main Areas, e.g., responsive web design</p>
+                    <p class="card-para">In this portfolio, you’ll find a curated selection of projects that highlight my skills in Main Areas, e.g., responsive web design</p>
                     <a href="#" class="read-more-btn">Read More <span class="read-more-icon"><i
                     class="fa-solid fa-angle-right"></i></span></a>
                 </div>

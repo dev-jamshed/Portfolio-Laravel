@@ -21,6 +21,7 @@ use App\Http\Controllers\PricingController;
 
 Route::name('frontend.')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/contacts-store', [ContactController::class, 'store'])->name('contact.store');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')->group(function () {

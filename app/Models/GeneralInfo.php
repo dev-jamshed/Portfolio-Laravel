@@ -12,7 +12,7 @@ class GeneralInfo extends Model
     protected $fillable = [
         'logo',
         'email',
-        'location',
+        'location', 
         'phone',
         'footer_desc',
         'sidebar_image',

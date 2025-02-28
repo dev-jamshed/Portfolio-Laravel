@@ -13,7 +13,8 @@
     {{-- // Dynamic Styles --}}
     @yield('styles')
 
-
+    @php $generalInfo = get_general_info();$socialMediaInfos = get_social_media_info(); @endphp
+    
 </head>
 
 <body>
@@ -26,13 +27,13 @@
                     <div class="header-content">
                         <div class="logo">
                             <a href="index.html">
-                                <img class="logo-dark" src="{{asset('assets/frontend')}}/assets/images/logo/white-logo-reeni.png" alt="logo">
-                                <img class="logo-white" src="{{asset('assets/frontend')}}/assets/images/logo/logo-white.png" alt="logo">
+                                <img class="logo-dark" src="{{ asset('storage/' . $generalInfo->logo) }}" alt="logo">
+                                {{-- <img class="logo-white" src="{{asset('assets/frontend')}}/assets/images/logo/logo-white.png" alt="logo"> --}}
                             </a>
                         </div>
                         <nav class="tmp-mainmenu-nav d-none d-xl-block">
                             <ul class="tmp-mainmenu">
-                                <li class="has-dropdown">
+                                {{-- <li class="has-dropdown">
                                     <a href="#">Home
                                         <i class="fa-regular fa-chevron-down"></i>
                                     </a>
@@ -50,6 +51,9 @@
                                         <li><a href="index-11.html">Home 11</a></li>
                                         <li><a href="index-12.html">Home 12</a></li>
                                     </ul>
+                                </li>  --}}
+                                <li>
+                                    <a href="{{route('frontend.home')}}">Home</a>
                                 </li>
                                 <li>
                                     <a href="about.html">About</a>
@@ -90,10 +94,12 @@
                         <div class="tmp-header-right">
                             <div class="social-share-wrapper d-none d-md-block">
                                 <div class="social-link">
-                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                    @foreach ($socialMediaInfos as $socialMediaInfo)
+                                    <a target="_blank" href="{{$socialMediaInfo->url}}"><img src="{{ asset('storage/' . $socialMediaInfo->icon) }}" class="footer_social_icons" alt="{{$socialMediaInfo->name}}"></a>
+                                @endforeach
+                                    {{-- <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                                     <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a> --}}
                                 </div>
                             </div>
                             <div class="actions-area">
@@ -112,13 +118,16 @@
     </header>
     <!-- tpm-header-area end -->
 
+
+    {{-- // side bar  --}}
     <div class="d-none d-xl-block">
         <div class="tmp-sidebar-area tmp_side_bar">
             <div class="inner">
                 <div class="top-area">
                     <a href="index.html" class="logo">
-                        <img class="logo-dark" src="{{asset('assets/frontend')}}/assets/images/logo/white-logo-reeni.png" alt="logo">
-                        <img class="logo-white" src="{{asset('assets/frontend')}}/assets/images/logo/logo-white.png" alt="logo">
+                        <img class="logo-dark" src="{{ asset('storage/' . $generalInfo->logo) }}" alt="logo">
+                        {{-- <img class="logo-white" src="{{asset('assets/frontend')}}/assets/images/logo/logo-white.png" alt="logo"> --}}
+                        
                     </a>
                     <div class="close-icon-area">
                         <button class="tmp-round-action-btn close_side_menu_active">
@@ -128,12 +137,12 @@
                 </div>
                 <div class="content-wrapper">
                     <div class="image-area-feature">
-                        <a href="index.html">
-                            <img src="{{asset('assets/frontend')}}/assets/images/logo/man.png" alt="personal-logo">
+                        <a href="{{route('frontend.home')}}">
+                            <img src="{{ asset('storage/' . $generalInfo->sidebar_image) }}" alt="personal-logo">
                         </a>
                     </div>
-                    <h5 class="title mt--30">Freelancer delivering exceptional Webflow, and Next.js solutions.</h5>
-                    <p class="disc">I am a skilled freelancer specializing in Webflow development, Figma design, and Next.js projects. I deliver creative, dynamic, and user-centric web solutions.
+                    <h5 class="title mt--30">{{$generalInfo->sidebar_title}}</h5>
+                    <p class="disc">{{$generalInfo->sidebar_description}}
                     </p>
                     <div class="short-contact-area">
                         <!-- single contact information -->
@@ -141,7 +150,7 @@
                             <i class="fa-solid fa-phone"></i>
                             <div class="information tmp-link-animation">
                                 <span>Call Now</span>
-                                <a href="#" class="number">+92 (8800) - 98670</a>
+                                <a href="tel:+{{$generalInfo->phone}}" class="number">+{{$generalInfo->phone}}</a>
                             </div>
                         </div>
                         <!-- single contact information end -->
@@ -151,7 +160,7 @@
                             <i class="fa-solid fa-envelope"></i>
                             <div class="information tmp-link-animation">
                                 <span>Mail Us</span>
-                                <a href="#" class="number">example@info.com</a>
+                                <a href="mailto:{{$generalInfo->email}}" class="number">{{$generalInfo->email}}</a>
                             </div>
                         </div>
                         <!-- single contact information end -->
@@ -161,7 +170,7 @@
                             <i class="fa-solid fa-location-crosshairs"></i>
                             <div class="information tmp-link-animation">
                                 <span>My Address</span>
-                                <span class="number">66 Broklyant, New York 3269</span>
+                                <span class="number">{{$generalInfo->location}}</span>
                             </div>
                         </div>
                         <!-- single contact information end -->
@@ -170,10 +179,13 @@
                     <div class="social-wrapper mt--20">
                         <span class="subtitle">find with me</span>
                         <div class="social-link">
-                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            {{-- <a href="#"><i class="fa-brands fa-instagram"></i></a>
                             <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                             <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a> --}}
+                            @foreach ($socialMediaInfos as $socialMediaInfo)
+                            <a target="_blank" href="{{$socialMediaInfo->url}}"><img src="{{ asset('storage/' . $socialMediaInfo->icon) }}" class="footer_social_icons" alt="{{$socialMediaInfo->name}}"></a>
+                        @endforeach
                         </div>
                     </div>
                     <!-- social area end -->
@@ -259,16 +271,17 @@
                 <div class="social-wrapper mt--40">
                     <span class="subtitle">find with me</span>
                     <div class="social-link">
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        {{-- <a href="#"><i class="fa-brands fa-instagram"></i></a>
                         <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                         <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a> --}}
+                        @foreach ($socialMediaInfos as $socialMediaInfo)
+                        <a target="_blank" href="{{$socialMediaInfo->url}}"><img src="{{ asset('storage/' . $socialMediaInfo->icon) }}" class="footer_social_icons" alt="{{$socialMediaInfo->name}}"></a>
+                        @endforeach
                     </div>
                 </div>
                 <!-- social area end -->
-
-
-
+ 
             </div>
         </div>
     </div>
@@ -292,6 +305,7 @@
                                     <img src="{{asset('assets/frontend')}}/assets/images/logo/white-logo-reeni.png" alt="logo">
                                 </a>
                             </div>
+                            <p class="mt-md-4 mt-3">{{$generalInfo->footer_desc}}</p>
                             <p class="description"><span>Get Ready</span> To Create Great</p>
                             <form action="#" class="newsletter-form-1 mt--40">
                                 <input type="email" placeholder="Email Adress">
@@ -325,15 +339,17 @@
                         <div class="single-footer-wrapper contact-wrap">
                             <h5 class="ft-title">Contact </h5>
                             <ul class="ft-link tmp-link-animation">
-                                <li><span class="ft-icon"><i class="fa-solid fa-envelope"></i></span><a href="#">example@gmail.com</a></li>
-                                <li><span class="ft-icon"><i class="fa-solid fa-location-dot"></i></span>3891 Ranchview Dr. Richardson</li>
-                                <li><span class="ft-icon"><i class="fa-solid fa-phone"></i></span><a href="#">01245789321</a></li>
+                                <li><span class="ft-icon"><i class="fa-solid fa-envelope"></i></span><a href="mailto:{{$generalInfo->email}}">{{$generalInfo->email}}</a></li>
+                                <li><span class="ft-icon"><i class="fa-solid fa-location-dot"></i></span> {{$generalInfo->location}}</li>
+                                <li><span class="ft-icon"><i class="fa-solid fa-phone"></i></span><a href="tel:+{{$generalInfo->phone}}"> +{{$generalInfo->phone}}</a></li>
                             </ul>
                             <div class="social-link footer">
-                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                                @foreach ($socialMediaInfos as $socialMediaInfo)
+                                    <a target="_blank" href="{{$socialMediaInfo->url}}"><img src="{{ asset('storage/' . $socialMediaInfo->icon) }}" class="footer_social_icons" alt="{{$socialMediaInfo->name}}"></a>
+                                @endforeach
+                                {{-- <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
                                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a> --}}
                             </div>
                         </div>
                     </div>

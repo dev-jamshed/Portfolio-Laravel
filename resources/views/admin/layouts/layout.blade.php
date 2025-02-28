@@ -350,7 +350,7 @@ href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
                     <li><a href="{{ route('admin.experiences.index') }}" ><i class="fa-duotone fa-regular fa-business-time"></i><span class="nav-text">Experiences</span></a></li>
                     <li><a href="{{ route('admin.social_media.index') }}" ><i class="fa-duotone fa-regular fa-icons"></i></i><span class="nav-text">Social Media</span></a></li>
                     <li><a href="{{ route('admin.clients.index') }}" ><i class="fa-duotone fa-regular fa-users-gear"></i><span class="nav-text">Clients</span></a></li>
-                    <li><a href="{{ route('admin.reviews.index') }}" ><i class="fa-duotone fa-regular fa-user-magnifying-glass"></i><span class="nav-text">Reviews</span></a></li>
+                    <li><a href="{{ route('admin.contacts.index') }}" ><i class="fa-duotone fa-regular fa-messages-question"></i><span class="nav-text">Contacts</span></a></li>
                  
            
                     {{-- <li>
@@ -444,7 +444,7 @@ href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
     {{-- <script src="/assets/admin/js/demo.js" type="text/javascript"></script> --}}
     {{-- <script src="/assets/admin/js/styleSwitcher.js" type="text/javascript"></script> --}}
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 
     {{-- //global search filter  --}}
     <script>
@@ -465,6 +465,7 @@ href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
                 { name: "Social Media", url: "{{ route('admin.social_media.index') }}" },
                 { name: "Clients", url: "{{ route('admin.clients.index') }}" },
                 { name: "Reviews", url: "{{ route('admin.reviews.index') }}" }
+                { name: "Contacts", url: "{{ route('admin.contacts.index') }}" }
             ];
         
             const searchInput = document.getElementById("searchInput");

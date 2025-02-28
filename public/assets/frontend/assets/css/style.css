@@ -24523,3 +24523,74 @@ body.tmp-white-version.color-primary-3rd .services-widget.v2 .active-bg {
   color: #3d3d3d !important;
 }
 /*# sourceMappingURL=../maps/style.css.map */
+
+.footer_social_icons{
+  width: 25px;  
+  height: 25px;
+  object-fit: cover;  
+}
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+  display: none;
+  position: relative;
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 100%);
+  width: var(--swal2-width);
+  max-width: 100%;
+  padding: var(--swal2-padding);
+  border: var(--swal2-border);
+  border-radius: var(--swal2-border-radius);
+  background: #ffffff12 !important;
+  color: var(--swal2-color);
+  font-family: inherit;
+  font-size: 1rem;
+  backdrop-filter: blur(4px) !important;
+  color: white !important;
+  border: 1px solid #dc3545 !important;
+  border-radius: 15px !important;
+}
+div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left] {
+  top: -0.4375em !important;
+  left: -2.0635em;
+  transform: rotate(-45deg);
+  transform-origin: 3.75em 3.75em;
+  border-radius: 7.5em 0 0 7.5em;
+  background: none  !important;
+  background-color: transparent !important;
+}
+div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right] {
+  top: -0.6875em;
+  left: 1.875em;
+  transform: rotate(-45deg);
+  transform-origin: 0 3.75em;
+  border-radius: 0 7.5em 7.5em 0 ;
+  background-color: transparent !important;
+}
+div:where(.swal2-icon).swal2-success .swal2-success-fix {
+  position: absolute;
+  z-index: 1;
+  top: .5em;
+  left: 1.625em;
+  width: .4375em;
+  height: 5.625em;
+  background-color: transparent !important;
+  transform: rotate(-45deg);
+}
+div:where(.swal2-icon).swal2-success .swal2-success-fix {
+  position: absolute;
+  z-index: 1;
+  top: .5em;
+  left: 1.625em;
+  width: .4375em;
+  height: 5.625em;
+  background-color: transparent !important;
+  transform: rotate(-45deg);
+}
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+  border: 0;
+  border-radius: .25em;
+  background: initial;
+  background-color:#dc3545 !important;
+  color: #fff;
+  font-size: 1em;
+}

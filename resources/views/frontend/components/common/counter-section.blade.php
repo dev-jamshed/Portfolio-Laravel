@@ -5,12 +5,11 @@
                 <div class="year-of-expariance-wrapper bg-blur-style-one tmp-scroll-trigger tmp-fade-in animation-order-1">
                     <div class="year-expariance-wrap">
                         <!-- <h2 class="year-number"><span class="counter">25 </span> </h2> -->
-                        <h2 class="counter year-number"><span class="odometer" data-count="25">00</span>
+                        <h2 class="counter year-number"><span class="odometer" data-count="{{$counterExperience->total_years}}">00</span>
                         </h2>
-                        <h3 class="year-title">Years Of <br> experience</h3>
+                        <h3 class="year-title">{{$counterExperience->title}}</h3>
                     </div>
-                    <p class="year-para">Business consulting consultants provide expert advice and guida the a
-                        businesses to help theme their performance efficiency</p>
+                    <p class="year-para">{{$counterExperience->description}} </p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-6 col-xxl-6">

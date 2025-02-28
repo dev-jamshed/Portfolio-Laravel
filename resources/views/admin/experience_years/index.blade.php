@@ -43,6 +43,19 @@
 
 @section('script')
 <script>
+
+document.getElementById('experience-year-form').addEventListener('submit', function(event) {
+    
+        let $submitButton = $(this).find('button[type="submit"]');
+        let originalText = $submitButton.html(); // Save original button text
+       
+        $submitButton.html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...'
+                    )
+                    .prop('disabled', true);
+    });
+
+    
     @if(session('success'))
         Toast.fire({
             icon: 'success',

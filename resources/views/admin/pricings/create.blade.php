@@ -33,7 +33,7 @@
                                     <input type="text" name="base" id="base" class="form-control solid" placeholder="Base (e.g., per month, per year)" required>
                                     <span class="error" id="base-error"></span>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6">
                                     <label class="form-label">Features</label>
                                     <div id="features-list">
                                         <div class="input-group mb-3">

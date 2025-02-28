@@ -34,7 +34,7 @@
                                     <input type="text" name="base" id="base" class="form-control solid" value="{{ $pricing->base }}" required>
                                     <span class="error" id="base-error"></span>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-6">
                                     <label class="form-label">Features</label>
                                     <div id="features-list">
                                         @foreach($pricing->features as $feature)
@@ -44,10 +44,10 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="add-feature"><i class="fa fa-plus"></i> Add Feature</button>
+                                    <button type="button" class="btn btn-secondary" id="add-feature"><i class="fa fa-plus"></i> Add Feature</button>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-success">Save Changes</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </div>
                             </div>
                         </form>

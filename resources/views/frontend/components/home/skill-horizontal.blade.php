@@ -8,21 +8,29 @@
                 Personalized <br> the best Experiences</h2>
         </div>
         <div class="services-widget v1">
-            <div class="service-item current tmp-scroll-trigger tmp-fade-in animation-order-1">
+            
+
+            @foreach ($beskSkils as $index => $skill)
+            <div class="service-item current tmp-scroll-trigger tmp-fade-in animation-order-{{$index+1}}">
                 <div class="my-skill-card">
                     <div class="card-icon">
-                        <i class="fa-light fa-building-columns"></i>
+                        {{-- <i class="fa-light fa-building-columns"></i> --}}
+                        <img src="{{ Storage::url($skill->icon) }}" alt="icon" width="50" height="50" class="mt-2">
+
                     </div>
                     <div class="card-title">
-                        <h3 class="main-title">Ui/visual Design</h3>
-                        <p class="sub-title">21 Done</p>
+                        <h3 class="main-title">{{$skill->name}}</h3>
+                        {{-- <p class="sub-title">21 Done</p> --}}
                     </div>
-                    <p class="card-para">My work is driven by the belief that thoughtful design and strategic planning can empower brands strategic planning can empower brands</p>
-                    <a href="#" class="read-more-btn">Read More <span class="read-more-icon"><i
-                    class="fa-solid fa-angle-right"></i></span></a>
+                    <p class="card-para">{{$skill->description}}</p>
+                    
+                    {{-- <a href="#" class="read-more-btn">Read More <span class="read-more-icon"><i
+                    class="fa-solid fa-angle-right"></i></span></a> --}}
                 </div>
-                <button class="service-link modal-popup"></button>
+                {{-- <button class="service-link modal-popup"></button> --}}
             </div>
+            @endforeach
+
             <div class="service-item tmp-scroll-trigger tmp-fade-in animation-order-2">
                 <div class="my-skill-card">
                     <div class="card-icon">

@@ -10,4 +10,9 @@ class SkillCategory extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function skills()
+    {
+        return $this->hasMany(Skill::class, 'category_id');
+    }
 }

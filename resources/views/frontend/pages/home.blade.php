@@ -12,15 +12,15 @@
     <!-- Service Area End -->
 
     <!-- Counter Area Start -->
-    @include('frontend.components.common.counter-section',compact('counters'))
+    @include('frontend.components.common.counter-section',compact('counters','counterExperience'))
     <!-- Counter Area End -->
 
     <!-- skill area start -->
-    @include('frontend.components.common.skill-section',compact('skills'))
+    @include('frontend.components.common.skill-section',compact('skillCategory'))
     <!-- skill area end -->
 
     <!-- Latest Service Area Start -->
-    @include('frontend.components.home.latest-service-section' )
+    @include('frontend.components.home.latest-service-section',compact('latestServices','serviceSectionImage') )
     <!-- Latest Service Area End -->
 
     <!-- Education Experience Area Start -->
@@ -32,7 +32,7 @@
     <!-- Our Clients End -->
     
     <!-- Skill Horizontal Start -->
-    @include('frontend.components.home.skill-horizontal' )
+    @include('frontend.components.home.skill-horizontal',compact('beskSkils'))
     <!-- Skill Horizontal End -->
 
     <!-- Testimonial Area Start -->

@@ -16,7 +16,8 @@ class Service extends Model
         'projects_done',
         'show_on_homepage',
         'category_id',
-        'long_description'
+        'long_description',
+        'show_latest_service'
     ];
 
     public function category()

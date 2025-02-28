@@ -1,23 +1,31 @@
 <div class="tmp-skill-area tmp-section-gapTop">
     <div class="container">
         <div class="row g-5">
+
+            @foreach ($skillCategory as $index => $Category)
             <div class="col-lg-6">
                 <div class="progress-wrapper">
                     <div class="content">
                         <h2 class="custom-title mb--30 tmp-scroll-trigger tmp-fade-in animation-order-1">
-                            Design Skill <span><img src="{{asset('assets/frontend')}}/assets/images/custom-line/custom-line.png" alt="custom-line"></span>
+                            {{$Category->name}} <span><img src="{{asset('assets/frontend')}}/assets/images/custom-line/custom-line.png" alt="custom-line"></span>
                         </h2>
-                        <!-- Start Single Progress Charts -->
-                        <div class="progress-charts">
-                            <h6 class="heading heading-h6">
-                                PHOTOSHOT</h6>
-                            <div class="progress">
-                                <div class="progress-bar wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay=".3s" role="progressbar" style="width: 100%; visibility: visible; animation-duration: 0.5s; animation-delay: 0.3s; animation-name: fadeInLeft;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
-                                    <span class="percent-label">100%</span>
+
+                        @foreach ($Category->skills as $skill)
+                            <!-- Start Single Progress Charts -->
+                            <div class="progress-charts">
+                                <h6 class="heading heading-h6">
+                                    {{$skill->name}}</h6>
+                                <div class="progress">
+                                    <div class="progress-bar wow fadeInLeft" data-wow-duration="0.5s" data-wow-delay=".3s" role="progressbar" style="width: {{$skill->range}}%; visibility: visible; animation-duration: 0.5s; animation-delay: 0.3s; animation-name: fadeInLeft;" aria-valuenow="{{$skill->range}}" aria-valuemin="0" aria-valuemax="100">
+                                        <span class="percent-label">{{$skill->range}}%</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- End Single Progress Charts -->
+                            <!-- End Single Progress Charts -->
+                                
+                        @endforeach
+
+
 
                         <!-- Start Single Progress Charts -->
                         <div class="progress-charts">
@@ -58,6 +66,9 @@
                     </div>
                 </div>
             </div>
+            @endforeach
+            
+{{--             
             <div class="col-lg-6">
                 <div class="progress-wrapper">
                     <div class="content">
@@ -114,7 +125,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div>       --}}
         </div>
     </div>
 </div>

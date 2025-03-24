@@ -1,10 +1,16 @@
   
+@extends('frontend.layouts.master')
+ 
+@section('content')
+
     <!-- Breadcrumb Area Start -->
     @include('frontend.components.common.breadcrumb-area')
     <!-- Breadcrumb Area End -->
 
     <!--  Service Area Start -->
+    <section class=" tmp-section-gapTop">
     @include('frontend.components.common.service-section')
+    </section>
     <!--  Service Area End -->
 
     <!--   skill area start -->
@@ -12,11 +18,13 @@
     <!--   skill area end -->
 
     <!--  Counter Area Start -->
-    @include('frontend.components.common.counter-section')
+    <section class="tmp-section-gapTop">
+        @include('frontend.components.common.counter-section')
+        </section>
     <!--  Counter Area End -->
     
     <!--  Education Experience Area Start -->
-    @include('frontend.components.about.education-exp-section')
+    @include('frontend.components.home.education-exp-section')
     <!--  Education Experience Area End -->
 
     <!--  Pricing Plan Start -->
@@ -27,3 +35,4 @@
     @include('frontend.components.common.appointment-form')
     <!--  Get In touch End -->
  
+    @endsection

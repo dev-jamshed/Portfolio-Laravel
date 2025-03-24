@@ -26,7 +26,7 @@
                 <div class="col-lg-12">
                     <div class="header-content">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="{{route('frontend.home')}}">
                                 <img class="logo-dark" src="{{ asset('storage/' . $generalInfo->logo) }}" alt="logo">
                                 {{-- <img class="logo-white" src="{{asset('assets/frontend')}}/assets/images/logo/logo-white.png" alt="logo"> --}}
                             </a>
@@ -56,18 +56,19 @@
                                     <a href="{{route('frontend.home')}}">Home</a>
                                 </li>
                                 <li>
-                                    <a href="about.html">About</a>
+                                    <a href="{{route('frontend.about')}}">About</a>
                                 </li>
                                 <li class="has-dropdown">
-                                    <a href="#">Services
+                                    <a href="{{route('frontend.services')}}">Services
                                         <i class="fa-regular fa-chevron-down"></i>
                                     </a>
                                     <ul class="submenu">
-                                        <li><a href="service.html">Service</a></li>
-                                        <li><a href="service-details.html">Service Details</a></li>
+                                        @foreach (get_services() as  $nav_service)
+                                          <li><a href="{{route('frontend.service.detail',$nav_service->id)}}">{{$nav_service->name}}</a></li>    
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <li class="has-dropdown">
+                                {{-- <li class="has-dropdown">
                                     <a href="#">Blog
                                         <i class="fa-regular fa-chevron-down"></i>
                                     </a>
@@ -75,18 +76,21 @@
                                         <li><a href="blog.html">Blog Classic</a></li>
                                         <li><a href="blog-details.html">Blog Details</a></li>
                                     </ul>
-                                </li>
-                                <li class="has-dropdown">
-                                    <a href="#">Project
+                                </li> --}}
+                                {{-- <li class="has-dropdown">
+                                    <a href="{{route('frontend.home')}}">Project
                                         <i class="fa-regular fa-chevron-down"></i>
                                     </a>
                                     <ul class="submenu">
                                         <li><a href="project.html">Project</a></li>
                                         <li><a href="project-details.html">Project Details</a></li>
                                     </ul>
+                                </li> --}}
+                                <li>
+                                    <a href="{{route('frontend.projects')}}">Project</a>
                                 </li>
                                 <li>
-                                    <a href="contact.html">Contact</a>
+                                    <a href="{{route('frontend.contact')}}">Contact</a>
                                 </li>
                             </ul>
 
@@ -124,7 +128,7 @@
         <div class="tmp-sidebar-area tmp_side_bar">
             <div class="inner">
                 <div class="top-area">
-                    <a href="index.html" class="logo">
+                    <a href="{{route('frontend.home')}}" class="logo">
                         <img class="logo-dark" src="{{ asset('storage/' . $generalInfo->logo) }}" alt="logo">
                         {{-- <img class="logo-white" src="{{asset('assets/frontend')}}/assets/images/logo/logo-white.png" alt="logo"> --}}
                         
@@ -364,7 +368,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="main-wrapper">
-                        <p class="copy-right-para tmp-link-animation"> ©<a href="#">ThemesPark </a>
+                        <p class="copy-right-para tmp-link-animation"> ©<a href="#">Nexztech</a>
                             <script>
                                 document.write(new Date().getFullYear())
                             </script> | All Rights Reserved
@@ -384,7 +388,7 @@
 
 
     <!-- ready chatting option via email -->
-    <div class="ready-chatting-option tmp-ready-chat">
+    {{-- <div class="ready-chatting-option tmp-ready-chat">
         <input type="checkbox" id="click">
         <label for="click">
             <i class="fab fa-facebook-messenger"></i>
@@ -414,7 +418,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ready chatting option via email end -->
 
 

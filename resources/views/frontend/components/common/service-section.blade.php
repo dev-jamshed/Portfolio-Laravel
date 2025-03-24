@@ -1,4 +1,4 @@
-<section class="service-area tmp-section-gap">
+<section class="service-area">
     <div class="container">
         <div class="row justify-content-center">
             @foreach ($services as $index => $service)

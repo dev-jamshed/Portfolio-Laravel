@@ -1,4 +1,4 @@
-<section class="get-in-touch-area tmp-section-gapTop">
+<section class="get-in-touch-area tmp-section-gapTop tmp-section-gap ">
     <div class="container">
         <div class="contact-get-in-touch-wrap">
             <div class="get-in-touch-wrapper tmponhover">

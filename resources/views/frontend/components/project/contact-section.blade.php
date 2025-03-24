@@ -70,6 +70,15 @@
         event.preventDefault();
         var formData = new FormData(this);
 
+        let $submitButton = $(this).find('button[type="submit"]');
+        let originalText = $submitButton.html(); // Save original button text
+       
+        $submitButton.html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...'
+                    )
+                    .prop('disabled', true);
+
+
         fetch("{{ route('frontend.contact.store') }}", {
             method: 'POST',
             headers: {
@@ -104,6 +113,8 @@
         })
         .catch(error => {
             console.error('Error:', error);
+        }).finally(()=>{
+            $submitButton.html(originalText).prop('disabled', false);
         });
     });
 </script>

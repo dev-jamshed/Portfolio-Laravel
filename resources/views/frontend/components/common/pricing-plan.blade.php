@@ -1,4 +1,4 @@
-<section class="our-price-plan-area tmp-section-gapBottom">
+<section class="our-price-plan-area tmp-section-gapTop  pb-0">
     <div class="container">
         <div class="section-head mb--60">
             <div class="section-sub-title center-title tmp-scroll-trigger tmp-fade-in animation-order-1">
@@ -9,51 +9,43 @@
             </h2>
         </div>
         <div class="row align-items-center">
-            <div class="col-lg-4 col-md-6">
-                <div class="price-plan-card tmponhover blur-style-two tmp-scroll-trigger tmp-fade-in animation-order-1">
-                    <span class="price-sub-title">Starter</span>
-                    <h3 class="main-price">$ 5.00</h3>
-                    <p class="per-month">Per Month</p>
-                    <div class="check-box">
-                        <ul>
-                            <li>
-                                <div class="check-box-item">
-                                    <div class="box-icon">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </div>
-                                    <p class="box-para">5 Social Media Account</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="check-box-item">
-                                    <div class="box-icon">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </div>
-                                    <p class="box-para">Free Platform Access</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="check-box-item">
-                                    <div class="box-icon">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </div>
-                                    <p class="box-para">24/7 Customer Support</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="tmp-button-here">
-                        <a class="tmp-btn hover-icon-reverse btn-border btn-md radius-round" href="contact.html">
-                            <span class="icon-reverse-wrapper">
-                <span class="btn-text">Get Started</span>
-                            <span class="btn-icon"><i class="fa-sharp fa-regular fa-arrow-right"></i></span>
-                            <span class="btn-icon"><i class="fa-sharp fa-regular fa-arrow-right"></i></span>
-                            </span>
-                        </a>
+
+            @foreach ($pricing as $listItem)
+                <div class="col-lg-4 col-md-6">
+                    <div class="price-plan-card tmponhover blur-style-two tmp-scroll-trigger tmp-fade-in animation-order-1">
+                        <span class="price-sub-title">{{$listItem->title}}</span>
+                        <h3 class="main-price">PKR {{$listItem->price}}</h3>
+                        <p class="per-month">{{$listItem->base}}</p>
+                        
+                        <div class="check-box">
+                            <ul>
+                                @foreach ($listItem->features as $feature) 
+                                    <li>
+                                        <div class="check-box-item">
+                                            <div class="box-icon">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                            </div>
+                                            <p class="box-para ">{{$feature->feature}}</p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                        <div class="tmp-button-here">
+                            <a class="tmp-btn hover-icon-reverse btn-border btn-md radius-round" href="{{route('frontend.contact')}}">
+                                <span class="icon-reverse-wrapper">
+                                <span class="btn-text">Get Started</span>
+                                <span class="btn-icon"><i class="fa-sharp fa-regular fa-arrow-right"></i></span>
+                                <span class="btn-icon"><i class="fa-sharp fa-regular fa-arrow-right"></i></span>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 tmp-scroll-trigger tmp-fade-in animation-order-2">
+            @endforeach
+
+            {{-- <div class="col-lg-4 col-md-6 tmp-scroll-trigger tmp-fade-in animation-order-2">
                 <div class="price-plan-card tmponhover blur-style-two active">
                     <span class="price-sub-title">Basic</span>
                     <h3 class="main-price">$ 230.00</h3>
@@ -156,7 +148,9 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
+
+
         </div>
     </div>
 </section>

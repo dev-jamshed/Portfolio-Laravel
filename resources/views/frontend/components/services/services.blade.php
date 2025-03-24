@@ -1,4 +1,4 @@
-<section class="latest-service-area tmp-section-gap">
+<section class="latest-service-area tmp-section-gap pb-0">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-sm-6">

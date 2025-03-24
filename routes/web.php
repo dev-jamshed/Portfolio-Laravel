@@ -10,7 +10,6 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\GeneralInfoController;
@@ -18,11 +17,20 @@ use App\Http\Controllers\SkillCategoryController;
 use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\ExperienceYearController;
 use App\Http\Controllers\PricingController;
+use App\Http\Controllers\frontend\PageController;
 
 Route::name('frontend.')->group(function(){
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [PageController::class, 'home'])->name('home');
+    Route::get('/services', [PageController::class, 'services'])->name('services');
+    Route::get('/services/{id}', [PageController::class, 'serviceDetail'])->name('service.detail');
+    Route::get('/projects', [PageController::class, 'projects'])->name('projects');
+    Route::get('/project/{id}', [PageController::class, 'projectDetail'])->name('project.detail');
+    Route::get('/about', [PageController::class, 'about'])->name('about');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     Route::post('/contacts-store', [ContactController::class, 'store'])->name('contact.store');
 });
+
+
 
 Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard',function () {

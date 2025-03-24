@@ -1,3 +1,8 @@
+
+@extends('frontend.layouts.master')
+ 
+@section('content')
+
 <!-- Breadcrumb Area Start -->
 @include('frontend.components.common.breadcrumb-area')
 <!-- Breadcrumb Area End -->
@@ -23,3 +28,5 @@
         </div>
     </div>
 </div>
+
+@endsection

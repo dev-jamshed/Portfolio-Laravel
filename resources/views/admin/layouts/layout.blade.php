@@ -398,13 +398,13 @@ href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
   ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyrights visasbuzz 2025. All Rights Reserved</p>
+                <p>Copyrights Nexztech 2025. All Rights Reserved</p>
             </div>
         </div>
 
     </div>
     <script>
-        var asset_base_url = 'index.html';
+        var asset_base_url = {{route('frontend.home')}};
     </script>
     <!--**********************************
         Main wrapper end
@@ -464,7 +464,7 @@ href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
                 { name: "Experiences", url: "{{ route('admin.experiences.index') }}" },
                 { name: "Social Media", url: "{{ route('admin.social_media.index') }}" },
                 { name: "Clients", url: "{{ route('admin.clients.index') }}" },
-                { name: "Reviews", url: "{{ route('admin.reviews.index') }}" }
+                { name: "Reviews", url: "{{ route('admin.reviews.index') }}" },
                 { name: "Contacts", url: "{{ route('admin.contacts.index') }}" }
             ];
         

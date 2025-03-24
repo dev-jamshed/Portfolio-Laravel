@@ -13,7 +13,9 @@
     <!-- Latest Service Area End -->
 
     <!--  My Price plan Start -->
-    @include('frontend.components.common.pricing-plan')
-    <!--  My Price plan End -->
+    <div class="tmp-section-gapBottom">
+        @include('frontend.components.common.pricing-plan')
+        <!--  My Price plan End -->
+    </div>
 
 @endsection

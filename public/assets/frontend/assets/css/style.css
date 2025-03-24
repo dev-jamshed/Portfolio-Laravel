@@ -18804,6 +18804,7 @@ section.clients-testimonial-area {
   font-weight: 700;
   line-height: 27px;
   margin-bottom: 28px;
+  text-transform: capitalize;
 }
 @media only screen and (max-width: 767px) {
   .price-plan-card .per-month {
